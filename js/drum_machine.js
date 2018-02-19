@@ -1,88 +1,118 @@
 //|| For making presets ========================
 
-const drumOn = (drum_key, ...indexes) => {
+const drumOnOff = (drum_key, onOff, ...indexes) => {
   // console.log(drum_key,indexes)
   indexes.map(index => {
-    drums[drum_key].pattern[index].on = true
+    drums[drum_key].pattern[index].on = onOff;
+    isOn(drum_key, index)
   });
+  song.indexes_for_onoff.concat[indexes]
 };
 
-const drumOff = (drum_key, ...indexes) => {
-  indexes.map(index => {
-    drums[drum_key].pattern[index].on = false;
-  });
-};
-
-const four_to_floor = (four_to_floor_time, four_to_floor_drum) => {
+const four_to_floor = (step) => {
+  const four_to_floor_time = timers.four_to_floor_time
   const indexesForDrumOn = [];
-  for (var i = 0; i < 8; i = i + 4) {
-    console.log(i)
+  for (var i = 0; i < step; i = i + four_to_floor_time) {
     indexesForDrumOn.push(i)
   }
   return indexesForDrumOn;
 };
 
-//|| Preset maker ========================
+const createEmptyPattern = (drum_key, pattern, drum_step) => {
+  drums[drum_key][pattern].push({ 'drum': drum_key, velocity: 5, on: false });
 
-const patternFaker = (step, four_to_floor_time,four_to_floor_drum) => {
-  const rand1 = timers.rand(step);
-  const rand2 = timers.rand(step);
-  const four_to_floor_indexes = four_to_floor(four_to_floor_time, four_to_floor_drum)
-  console.log('faker', rand1,rand2)
-  //  console.log('424 indexes', four_to_floor_indexes)
-  for (let drum_key in drums) {
-  //   // console.log('drum_key',drum_key);
-    (drum_key === four_to_floor_drum)
-      ? drumOn(four_to_floor_drum, ...four_to_floor_indexes)
-      : drumOn(drum_key, rand1, rand2);
-  }
-  // console.log('success', drums)
+}
+
+const patternFaker = (step, drum_keys) => {
+  console.log('in patternfaker',step,drum_keys)
+    const four_to_floor_indexes = four_to_floor(step)
+    const four_to_floor_drum = timers.four_to_floor_drum;
+
+    console.log(four_to_floor_indexes,four_to_floor_drum)
+    for (var drum_key in drums) {
+        const rand1 = timers.rand(step);
+    const rand2 = timers.rand(step);
+      console.log('for',drum_key)
+      if (drum_key === timers.four_to_floor_drum) {
+        // console.log('if',drum_key)
+        drumOnOff(four_to_floor_drum, true, ...four_to_floor_indexes)
+      } else {
+        // console.log('else',drum_key)
+        drumOnOff(drum_key, true, rand1, rand2);
+      }
+    }
+
 };
 
-const presetSaver = (preset) => {
+// const makePreset = async (preset) => {
+//   console.log('in makePreset',preset)
+//     try {
+//         await patternClear(song.drum_keys);
+//         await song.drum_keys.map(drum_key => {
+//           for (let drumStep = 0; drumStep < drums[drum_key].steps; drumStep++) {
+
+//             createEmptyPattern(drum_key,'pattern', drumStep)
+
+//             const remove_active_key = drum_key + '_' + drumStep
+//             const temp_key = document.getElementById(remove_active_key)
+//             console.log(temp_key)
+//             removeClass(temp_key, drums.drum_beat_selected)
+//           }
+
+//         })
+//         console.log('step, song.drum_keys',drums.hihat)
+//         // patternFaker(timers.step_time, song.drum_keys);
+//         // presetSaver(step, preset, drum_keys, drum_key)
+//     } catch (error) {
+//       console.log('makePattern error: ' + error.name)
+//     }
+// }
+
+const presetSaver = (preset, drum_key) => {
+  if (drums[drum_key].pattern_presets[preset]) {
+    console.log('copying into active pattern')
+      drums[drum_key].pattern = drums[drum_key].pattern_presets[preset].slice();
+      console.log('preset',drums[drum_key].pattern_presets[preset],drums[drum_key].pattern)
+    } else {
+      console.log('copying from active pattern to preset')
+      drums[drum_key].pattern_presets[preset] = drums[drum_key].pattern.slice();
+      console.log('preset',drums[drum_key].pattern_presets[preset],drums[drum_key].pattern)
+    }
+    // console.log('before',drums[drum_key].pattern_presets[preset])
+}
+
+const savePreset = (step, preset, drum_keys, drum_key) => {
+  presetSaver(preset, drum_keys, drum_key)
+}
+
+const patternClear = (drum_keys) => {
   drum_keys.map(drum_key => {
-    drums[drum_key].track[preset] = [].concat(drums[drum_key].pattern)
+    // drums[drum_key].pattern = Object.assign([],[])
+    drums[drum_key].pattern.length = 0
   })
+  // console.log('drums',drums['snare'].pattern_presets)
 }
 
-const patternClear = (preset) => {
-  drum_keys.map(drum_key => {
-     const turn_off_on_indexes = []
-     drums[drum_key].pattern.map( (value, index, array) => {
-        if (value.on === true) {
-          turn_off_on_indexes.push(index)
-        }
-      })
-    drumOff(drum_key, ...turn_off_on_indexes);
-  })
-}
 
-const makeMultiplePresets = async (step, four_to_floor_time, four_to_floor_drum, ...preset) => {
-  // count = 0;
-  console.log(step, four_to_floor_time, four_to_floor_drum, ...preset)
-  // console.log(number_of_patternBounces)
-  await patternFaker(step, four_to_floor_time, four_to_floor_drum);
-  await preset.map((index) => {
-    presetSaver(index)
-  });
-  // await preset.map(async (index) => {
-  //   // const presetTest = await presetSaver(index);
-  //   const presetTest2 = await patternClear(index)
-  // });
-  console.log(drums.hihat.track)
-}
 
-//|| Makes everything go ========================
+//|| Init makes everything go ========================
 
-let init = () => {
+let init = async () => {
   const step = timers.step_time;
-  initDOMDrumMachine(step);
-  makeMultiplePresets(step, timers.four_to_floor_time, four_to_floor_drum, 'preset1','preset2','preset3');
+  const four_to_floor_time = timers.four_to_floor_time;
+  const four_to_floor_drum = timers.four_to_floor_drum;
+  const drum_keys = Object.keys(drums);
+  const drum_keys_length = Object.keys(drums).length;
+
+  await initDOMDrumMachine(step,drum_keys);
+
+  // makeMultiplePresets(step, timers.four_to_floor_time, four_to_floor_drum, 'preset1','preset2','preset3');
 }
+
+
 
 
 if (!!(window.addEventListener))
   window.addEventListener("DOMContentLoaded", init)
 else // MSIE to be safe
   window.attachEvent("onload", init);
-
