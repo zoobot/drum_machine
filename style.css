@@ -44,11 +44,16 @@ body {
   display: flex;
   justify-content: center;
   width: 2em;
-  background-color: black;
   color: white;
   margin: 0 10px;
   padding: 10px;
+  background-color: black;
 }
+
+.dm__nav__controller__ul__li--on {
+  opacity: .5;
+}
+
 
 
 /*DRUM MACHINE SECTION*/
@@ -60,6 +65,7 @@ body {
   border-radius: 10px;
   padding: 4px;
 }
+
 
 
 /*PLAYER SECTION*/
@@ -117,6 +123,7 @@ body {
 }
 
 
+
 /*DRUM SECTION*/
 
 .dm__drum {
@@ -159,8 +166,8 @@ body {
 
 .dm__drum__ul__li {
   /*background-color: #FF69B4;*/
-  background-color: #eeb2b2;
-background-color: #ceaf9a;
+  /*background-color: #eeb2b2;*/
+  background-color: #ceaf9a;
   display: inline-block;
   margin: 10px 3px;
   width: 100%;
@@ -169,9 +176,9 @@ background-color: #ceaf9a;
 }
 
 .dm__drum__ul__li:nth-child(4n+1) {
-  background-color: #FF0000;
-  background-color: #d6bbbb;
-  /*background-color: #d4cdcd;*/
+/*  background-color: #FF0000;
+  background-color: #d6bbbb;*/
+  background-color: #d4cdcd;
   display: inline-block;
   margin: 10px 3px;
   width: 100%;
@@ -185,7 +192,7 @@ background-color: #ceaf9a;
 
 .dm__drum__ul__li--active,
 .dm__drum__ul__li--active:nth-child(4n+1) {
-  opacity:.5;
+  opacity: .5;
   /*background-color: #8d2d2d;*/
 }
 

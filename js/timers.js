@@ -9,7 +9,7 @@ _ stepTime is used for rand
 const timers = {
   bpm: 128,
   // steps: [8, 16, 32, 64],
-  stepTime: 8, //default 8 this could be iterator for steps buttons
+  step_time: 8, //default 8 this could be iterator for steps buttons
   four_to_floor_time: 4,
   max_step: 8,
 

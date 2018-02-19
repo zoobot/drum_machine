@@ -1,23 +1,8 @@
-
-
-// //|| Initialize drum length array with all off pattern ========================
-// const initDrumMachine = (steps) => {
-//   drum_keys.map((drum_key, index) => {
-//     for (let drumStep = 0; drumStep < drums[drum_key].steps; drumStep++) {
-//       drums[drum_key].pattern.push({ 'drum': drum_key, velocity: 5, on: false })
-//       // song.combo.push(false)
-//       // console.log(drums[drum].pattern[drumStep])
-//     }
-//   })
-//   // console.log(drums)
-//   // console.log(song)
-// };
-
-//|| Individual Drum beats/steps on off with special timer four_to_floor ========================
+//|| For making presets ========================
 
 const drumOn = (drum_key, ...indexes) => {
+  // console.log(drum_key,indexes)
   indexes.map(index => {
-    // console.log(index)s
     drums[drum_key].pattern[index].on = true
   });
 };
@@ -28,121 +13,76 @@ const drumOff = (drum_key, ...indexes) => {
   });
 };
 
-const four_to_floor = (drum_key, speed) => {
+const four_to_floor = (four_to_floor_time, four_to_floor_drum) => {
   const indexesForDrumOn = [];
-  drums[drum_key].pattern.forEach((value, index) => {
-    if (index % speed === 0) {
-      indexesForDrumOn.push(index);
-    }
-  });
-  // console.log(indexesForDrumOn)
+  for (var i = 0; i < 8; i = i + 4) {
+    console.log(i)
+    indexesForDrumOn.push(i)
+  }
   return indexesForDrumOn;
 };
 
-//|| Individual Drum pattern maker ========================
+//|| Preset maker ========================
 
-const patternFaker = (step, four_to_floor_time, four_to_floor_drum) => {
+const patternFaker = (step, four_to_floor_time,four_to_floor_drum) => {
   const rand1 = timers.rand(step);
   const rand2 = timers.rand(step);
-  // console.log('faker', rand1,rand2)
-  drum_keys.forEach((drum_key, index) => {
+  const four_to_floor_indexes = four_to_floor(four_to_floor_time, four_to_floor_drum)
+  console.log('faker', rand1,rand2)
+  //  console.log('424 indexes', four_to_floor_indexes)
+  for (let drum_key in drums) {
+  //   // console.log('drum_key',drum_key);
     (drum_key === four_to_floor_drum)
-      ? drumOn(four_to_floor_drum, ...four_to_floor(four_to_floor_drum, four_to_floor_time))
+      ? drumOn(four_to_floor_drum, ...four_to_floor_indexes)
       : drumOn(drum_key, rand1, rand2);
-  });
-  console.log('success', drums)
+  }
+  // console.log('success', drums)
 };
 
-//|| Drum pattern combiner ========================
-
-// const patternBounce = async (step, four_to_floor_time, four_to_floor_drum) => {
-
-//   timers.max_step = Math.max.apply(Math, drum_keys.map((drum_key) => drums[drum_key].steps));
-//   let count = 0;
-//   // console.log('filtered',timers.max_step)
-
-//   while (count < timers.max_step) {
-//     // console.log(count)
-//         const filtered = drum_keys.filter( (drum_key, index, array)  => {
-//           return drums[drum_key].pattern[count].on;
-//         });
-//         // console.log('filtered',filtered)
-//         song.combo.combo_pattern.push(filtered);
-//         count++;
-//   }
-//   console.log('song.combo.combo_pattern',song.combo.combo_pattern)
-//   return song.combo.combo_pattern;
-// }
-
-// const patternRecorder = (step, four_to_floor_time, four_to_floor_drum) => {
-//     const  bounce = patternBounce();
-//     song.pattern.push(bounce);
-//     // console.log(song.pattern)
-//     return song.pattern;
-// }
-
-const patternRecorder = (preset) => {
-    drum_keys.map(drum_key => {
-      drums[drum_key].track[preset] = drums[drum_key].pattern
-    })
+const presetSaver = (preset) => {
+  drum_keys.map(drum_key => {
+    drums[drum_key].track[preset] = [].concat(drums[drum_key].pattern)
+  })
 }
 
-const songRecorder = (step, four_to_floor_time, four_to_floor_drum, number_of_patternBounces, ...preset) => {
+const patternClear = (preset) => {
+  drum_keys.map(drum_key => {
+     const turn_off_on_indexes = []
+     drums[drum_key].pattern.map( (value, index, array) => {
+        if (value.on === true) {
+          turn_off_on_indexes.push(index)
+        }
+      })
+    drumOff(drum_key, ...turn_off_on_indexes);
+  })
+}
+
+const makeMultiplePresets = async (step, four_to_floor_time, four_to_floor_drum, ...preset) => {
   // count = 0;
-  console.log(preset)
+  console.log(step, four_to_floor_time, four_to_floor_drum, ...preset)
   // console.log(number_of_patternBounces)
-  preset.map(index => {
-    patternFaker(step, four_to_floor_time, four_to_floor_drum);
-    patternRecorder(index);
+  await patternFaker(step, four_to_floor_time, four_to_floor_drum);
+  await preset.map((index) => {
+    presetSaver(index)
   });
-
-  // while (count < number_of_patternBounces) {
-  //   patternFaker(step, four_to_floor_time, four_to_floor_drum);
-  //   patternRecorder(preset1);
-  //   // console.log('bounce',bounce)
-  //   // await patternBounce();
-  //   song.song.push(song.combo.combo_pattern);
-  //   count++;
-  // }
-  // console.log(song.song)
+  // await preset.map(async (index) => {
+  //   // const presetTest = await presetSaver(index);
+  //   const presetTest2 = await patternClear(index)
+  // });
+  console.log(drums.hihat.track)
 }
 
-const hearSee = (count) => {
-  // console.log('|_',drums.combo[count])
+//|| Makes everything go ========================
+
+let init = () => {
+  const step = timers.step_time;
+  initDOMDrumMachine(step);
+  makeMultiplePresets(step, timers.four_to_floor_time, four_to_floor_drum, 'preset1','preset2','preset3');
 }
 
-const countSetter = (timer, step, number_of_patternBounces) => {
-  console.log(timer);
-  var count = 0;
-  var interval = setInterval(() => {
-    // console.log('|_',count,'__',song.song[0])
-    // console.log('|_',count,song.song[number_of_patternBounces][count]);
-    number_of_patternBounces--
-    count++;
-    if (count === step) {
-      clearInterval(interval);
-    }
-  }, timer);
-}
 
-const playSong = async() => {
-  // console.log('Drum Machine Settings','\n', 'bars:', stepTimer(step),'\n','BPM in ms:', bpmer, '\n', 'step:', step)
-  const four_to_floor_time = timers.four_to_floor_time
-  const step = timers.stepTime
-  initDrumMachine(step);
+if (!!(window.addEventListener))
+  window.addEventListener("DOMContentLoaded", init)
+else // MSIE to be safe
+  window.attachEvent("onload", init);
 
-  // patternFaker(step, four_to_floor_time, four_to_floor_drum);
-  // patternRecorder(preset1);
-
-
-  // patternRecorder(step, four_to_floor_time, four_to_floor_drum);
-  songRecorder(number_of_patternBounces, step, four_to_floor_time, four_to_floor_drum, 'preset1','preset2','preset3');
-    console.log(drums.kick.track)
-  // // console.log(song.song)
-  // countSetter(bpm_ms, step, timers.stepTime, number_of_patternBounces -1);
-}
-
-playSong();
-
-// export drums = drums
-//bug with the 7
