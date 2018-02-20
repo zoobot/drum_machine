@@ -62,32 +62,18 @@ const isOn = (drum_key, id, e) => {
   }
 }
 
+
+const patternFakerIsOn = (drum_key, id) => {
+  const drum_id = drum_key + '_' + id
+  const e_temp = document.getElementById(drum_id)
+  addClass(e_temp, song.drum_beat_selected)
+}
+
 const toggleSelectedDrumBeat = (e) => {
   const id = parseInt(e.target.id.split('_').pop());
   const drum_key = e.target.id.split('_').shift();
   isOn(drum_key, id, e)
 }
-
-
-
-// const selectPresetOnOff = (e) => {
-//   song.preset_active[e.target.id] = !song.preset_active[e.target.id]
-//   const presets = Object.keys(song.preset_active)
-//   presets.map(preset => {
-//     if (preset !== e.target.id) {
-//       song.preset_active[preset] = false
-//       const target = document.getElementById(preset)
-//       removeClass(target, song.active_nav);
-//     } else {
-//       if (song.preset_active[e.target.id]) {
-//         addClass(e.target, song.active_nav)
-//         presetSaver(e)
-//       } else {
-//         removeClass(e.target, song.active_nav);
-//       }
-//     }
-//   })
-// }
 
 const selectPresetOnOff = (e) => {
   song.preset_active[e.target.id] = !song.preset_active[e.target.id]
@@ -101,6 +87,7 @@ const selectPresetOnOff = (e) => {
       if (song.preset_active[e.target.id]) {
         addClass(e.target, song.active_nav)
         patternFaker(timers.step_time, song.drum_keys)
+        presetSaver(e)
       } else {
         removeAllActive(song.drum_beat_selected)
       }
@@ -108,44 +95,14 @@ const selectPresetOnOff = (e) => {
   })
 }
 
-const presetBeatIsOn = (drum_key, id, preset) => {
-  console.log('DDDDD', drums[drum_key].pattern_presets[preset])
-  const drum_id = document.getElementById(drum_key + '_' + id)
-  if (drums[drum_key].pattern_presets[preset][id].on === true) {
-    addClass(drum_id, song.drum_beat_selected)
-  }
-}
 
 const presetSaver = (e) => {
   const preset = e.target.id
   song.drum_keys.map((drum_key) => {
     if (drums[drum_key].pattern_presets[preset]) {
-      removeAllActive(song.drum_beat_selected)
-      // drums[drum_key].pattern = drums[drum_key].pattern_presets[preset].slice();
       drums[drum_key].pattern = JSON.parse(JSON.stringify(drums[drum_key].pattern_presets[preset]));
-      drums[drum_key].pattern.map((value, index) => {
-
-        console.log('DDDDD', drums[drum_key].pattern_presets[preset])
-        const drum_id = drum_key + '_' + index;
-        drum_target = document.getElementById(drum_id);
-
-        if (drums[drum_key].pattern_presets[preset][index].on === true) {
-          console.log('true', preset, drum_target)
-          addClass(drum_target, song.drum_beat_selected)
-        }
-        // else {
-        //   console.log('remove')
-        //   removeClass(drum_target, song.drum_beat_selected)
-        // }
-        // presetBeatIsOn(drum_key, index, preset)
-
-      })
     } else {
       drums[drum_key].pattern = JSON.parse(JSON.stringify(drums[drum_key].pattern));
-      console.log(drums[drum_key].pattern)
-      // drums[drum_key].pattern_presets[preset] = drums[drum_key].pattern.slice();
-
-
     }
   })
 }
@@ -197,11 +154,24 @@ const selectOnOff = (e) => {
   }
 }
 
-const patternFakerIsOn = (drum_key, id) => {
-  const drum_id = drum_key + '_' + id
-  const e_temp = document.getElementById(drum_id)
-  addClass(e_temp, song.drum_beat_selected)
+const changeStep = (e) => {
+
+  let count = timers.step_time;
+  count = timers.step_time + 8;
+  if (count >= 64) {
+    count = 8;
+  }
+  var step_li = document.getElementById('step');
+  timers.step_time = count;
+  e.target.innerHTML = count;
+
+  // funny looking if you don't remove children first!
+  var dm = document.getElementById('dm');
+  dm.innerHTML = '';
+
+  initDOMDrumMachine();
 }
+
 
 const drum = document.querySelector('.dm');
 const audio = document.querySelector('.dm');
@@ -212,3 +182,4 @@ document.getElementById('onoff').addEventListener('click', selectOnOff.bind(this
 document.getElementById('preset1').addEventListener('click', selectPresetOnOff.bind(this));
 document.getElementById('preset2').addEventListener('click', selectPresetOnOff.bind(this));
 document.getElementById('preset3').addEventListener('click', selectPresetOnOff.bind(this));
+document.getElementById('step').addEventListener('click', changeStep.bind(this));

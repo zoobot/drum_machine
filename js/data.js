@@ -1,15 +1,3 @@
-const four_to_floor_drum = 'kick';
-/*
-__drum object__
-drumType can contain different drum sounds from various libraries, could become
-pattern has drum, velocity with default 5 and range 0-10, and on/off using booleans
-steps can be 8, 16, 32, 64 should have a upper limit with default 8
-mute is per drum with default false
-solo is per drum with default false
-volume is per drum with default 5
-overall velocity with default 5
-*/
-
 const drums = {
   /* example data
 

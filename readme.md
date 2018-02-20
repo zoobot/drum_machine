@@ -21,12 +21,17 @@ All code runs in latest Chrome, and FireFox
 
 ### Function Summaries
 
+_____________________
+
 drum_machine.js
 
-@drumOnOff toggles drum beat
+@drumOnOff toggles drum beat calls patternFakerIsOn for DOM manipulation
 @fourToFloor Returns indexes of 4/4 depending on step
 @createEmptyPattern Creates array of beats in drums[preset].pattern
 @patternFaker Creates random drum pattern
+@presetSaver saves and loads presets
+
+_____________________
 
 drum_dom.js
 
@@ -36,16 +41,17 @@ drum_dom.js
 
 @toggleOnOff toggles drum beat bools
 @isOn calls toggleOnOff and calls add/removeClass
+@patternFakerIsOn DOM manipulation after drumOnOff
 @toggleSelectedDrumBeat onclick calls isOn
 
-@selectPresetOnOff toggles DOM element classes for Presets, calls presetSaver
-@presetBeatIsOn adds/remove DOM element classes
-@presetSaver saves and loads presets
-@patternFakerIsOn adds class
+@selectPresetOnOff toggles DOM element classes for Presets, calls patternFaker and presetSaver
 
 @removeAllActive removes all DOM element classes
 @playback plays the beats with setTimeOut
 @selectOnOff toggles playback
+@changeStep changes step and calls initDOMDrumMachine to rebuild drum DOM
+
+_____________________
 
 timers.js
 

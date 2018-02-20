@@ -1,7 +1,6 @@
 
 
 const drumOnOff = (drum_key, onOff, ...indexes) => {
-  console.log('why', drum_key, onOff, indexes)
   indexes.map(index => {
     drums[drum_key].pattern[index].on = onOff;
     patternFakerIsOn(drum_key, index)
@@ -22,7 +21,6 @@ const createEmptyPattern = (drum_key, pattern) => {
 }
 
 const patternFaker = (step, drum_keys) => {
-  console.log(step)
   const four_to_floor_indexes = fourToFloor(step)
   const four_to_floor_drum = timers.four_to_floor_drum;
 
@@ -36,6 +34,8 @@ const patternFaker = (step, drum_keys) => {
     }
   });
 };
+
+
 
 
 //|| Init makes everything go ========================
