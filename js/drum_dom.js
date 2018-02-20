@@ -1,3 +1,5 @@
+//|| DOM Manipulation Functions ========================
+
 const initDOMDrumMachine = () => {
 
   const steps = timers.step_time;
@@ -95,7 +97,6 @@ const selectPresetOnOff = (e) => {
   })
 }
 
-
 const presetSaver = (e) => {
   const preset = e.target.id
   song.drum_keys.map((drum_key) => {
@@ -161,12 +162,12 @@ const changeStep = (e) => {
   if (count >= 64) {
     count = 8;
   }
-  var step_li = document.getElementById('step');
+  const step_li = document.getElementById('step');
   timers.step_time = count;
   e.target.innerHTML = count;
 
   // funny looking if you don't remove children first!
-  var dm = document.getElementById('dm');
+  const dm = document.getElementById('dm');
   dm.innerHTML = '';
 
   initDOMDrumMachine();
@@ -175,6 +176,7 @@ const changeStep = (e) => {
 
 const drum = document.querySelector('.dm');
 const audio = document.querySelector('.dm');
+
 // Event Listeners
 
 document.getElementById('onoff').addEventListener('click', selectOnOff.bind(this));
@@ -182,4 +184,5 @@ document.getElementById('onoff').addEventListener('click', selectOnOff.bind(this
 document.getElementById('preset1').addEventListener('click', selectPresetOnOff.bind(this));
 document.getElementById('preset2').addEventListener('click', selectPresetOnOff.bind(this));
 document.getElementById('preset3').addEventListener('click', selectPresetOnOff.bind(this));
+
 document.getElementById('step').addEventListener('click', changeStep.bind(this));

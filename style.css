@@ -58,6 +58,7 @@ body {
 
 
 
+
 /*DRUM MACHINE SECTION*/
 
 .dm {
@@ -67,6 +68,7 @@ body {
   border-radius: 10px;
   padding: 4px;
 }
+
 
 
 
@@ -124,6 +126,7 @@ body {
   -webkit-filter: invert(100%);
   filter: invert(100%);
 }
+
 
 
 

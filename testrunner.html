@@ -1,28 +1,26 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Mocha Tests</title>
-    <link rel="stylesheet" href="node_modules/mocha/mocha.css">
-  </head>
-  <body>
-    <div id="mocha"></div>
-    <script src="node_modules/mocha/mocha.js"></script>
-    <script src="node_modules/chai/chai.js"></script>
 
+<head>
+  <title>Mocha Tests</title>
+  <link rel="stylesheet" href="node_modules/mocha/mocha.css">
+</head>
 
-    <!-- load code you want to test here -->
-    <script type="text/javascript" src="js/timers.js"></script>
-    <script type="text/javascript" src="js/data.js"></script>
-    <script type="text/javascript" src="js/drum_dom.js"></script>
-    <script type="text/javascript" src="js/drum_machine.js"></script>
+<body>
+  <div id="mocha"></div>
+  <script src="node_modules/mocha/mocha.js"></script>
+  <script src="node_modules/chai/chai.js"></script>
+  <!-- load code for testing here -->
+  <script type="text/javascript" src="js/timers.js"></script>
+  <script type="text/javascript" src="js/data.js"></script>
+  <script type="text/javascript" src="js/drum_dom.js"></script>
+  <script type="text/javascript" src="js/drum_machine.js"></script>
+  <!-- load test files here -->
+  <script type="text/javascript" src="test/test_drum_machine.js"></script>
+  <script type="text/javascript" src="test/test_timers.js"></script>
+  <script>
+  mocha.run();
+  </script>
+</body>
 
-    <!-- load your test files here -->
-
-    <script type="text/javascript" src="test/test_drum_machine.js"></script>
-    <script type="text/javascript" src="test/test_timers.js"></script>
-
-    <script>
-      mocha.run();
-    </script>
-  </body>
 </html>

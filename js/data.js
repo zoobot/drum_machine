@@ -18,9 +18,9 @@ const drums = {
   },
   */
 
-  kick: { drumType: ['808 kick', '909 kick'], pattern: [], pattern_presets: [], url: 'assets/audio/808_BD01.mp3', steps: 8, mute: false, solo: false, volume: 10, velocity: 10 },
-  hihat: { drumType: ['open hihat', 'closed hihat'], pattern: [], pattern_presets: [], url: 'assets/audio/808_HH_01.mp3', steps: 8, mute: false, solo: false, volume: 10, velocity: 10 },
-  snare: { drumType: ['vistolite', 'wood marching band'], pattern: [], pattern_presets: [], url: 'assets/audio/808_Snr03.mp3', steps: 8, mute: false, solo: false, volume: 10, velocity: 10 },
+  kick: { drum_type: ['808 kick', '909 kick'], pattern: [], pattern_presets: [], url: 'assets/audio/808_BD01.mp3', steps: 8, mute: false, solo: false, volume: 10, velocity: 10 },
+  hihat: { drum_type: ['open hihat', 'closed hihat'], pattern: [], pattern_presets: [], url: 'assets/audio/808_HH_01.mp3', steps: 8, mute: false, solo: false, volume: 10, velocity: 10 },
+  snare: { drum_type: ['vistolite', 'wood marching band'], pattern: [], pattern_presets: [], url: 'assets/audio/808_Snr03.mp3', steps: 8, mute: false, solo: false, volume: 10, velocity: 10 },
 }
 
 const song = {

@@ -1,8 +1,8 @@
+//|| Pattern Faker Functions ========================
 
-
-const drumOnOff = (drum_key, onOff, ...indexes) => {
+const drumOnOff = (drum_key, on_off, ...indexes) => {
   indexes.map(index => {
-    drums[drum_key].pattern[index].on = onOff;
+    drums[drum_key].pattern[index].on = on_off;
     patternFakerIsOn(drum_key, index)
   });
 };
@@ -34,8 +34,6 @@ const patternFaker = (step, drum_keys) => {
     }
   });
 };
-
-
 
 
 //|| Init makes everything go ========================

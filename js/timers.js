@@ -1,6 +1,5 @@
 // timers for drum machine
 
-
 const timers = {
   bpm: 128,
   step_time: 8,
