@@ -1,14 +1,14 @@
-//|| For making presets ========================
+
 
 const drumOnOff = (drum_key, onOff, ...indexes) => {
-  console.log('why',drum_key, onOff, indexes)
+  console.log('why', drum_key, onOff, indexes)
   indexes.map(index => {
     drums[drum_key].pattern[index].on = onOff;
     patternFakerIsOn(drum_key, index)
   });
 };
 
-const four_to_floor = (step) => {
+const fourToFloor = (step) => {
   const four_to_floor_time = timers.four_to_floor_time
   const indexes_for_drum_on = [];
   for (var i = 0; i < step; i = i + four_to_floor_time) {
@@ -23,7 +23,7 @@ const createEmptyPattern = (drum_key, pattern) => {
 
 const patternFaker = (step, drum_keys) => {
   console.log(step)
-  const four_to_floor_indexes = four_to_floor(step)
+  const four_to_floor_indexes = fourToFloor(step)
   const four_to_floor_drum = timers.four_to_floor_drum;
 
   song.drum_keys.map(drum_key => {
@@ -37,11 +37,6 @@ const patternFaker = (step, drum_keys) => {
   });
 };
 
-const patternClear = (drum_keys) => {
-  drum_keys.map(drum_key => {
-    drums[drum_key].pattern.length = 0
-  })
-}
 
 //|| Init makes everything go ========================
 

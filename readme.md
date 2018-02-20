@@ -1,15 +1,57 @@
-/*
-__drum object__
-drumType can contain different drum sounds from various libraries, could become
-pattern has drum, velocity with default 5 and range 0-10, and on/off using booleans
-steps can be 8, 16, 32, 64 should have a upper limit with default 8
-mute is per drum with default false
-solo is per drum with default false
-volume is per drum with default 5
-overall velocity with default 5
-*/
+# Drum Machine
+
+A Visual drum machine with Pure Javascript HTML and CSS
+
+## Getting Started
+
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+
+### Prerequisites
+
+These files maybe viewed locally by opening index.html or by placing them on a webserver. No webserver required.
+
+### Installing
+
+For Testing run
+npm install on command line
+
+### Details
+
+All code runs in latest Chrome, and FireFox
+
+### Function Summaries
+
+drum_machine.js
+
+@drumOnOff toggles drum beat
+@fourToFloor Returns indexes of 4/4 depending on step
+@createEmptyPattern Creates array of beats in drums[preset].pattern
+@patternFaker Creates random drum pattern
+
+drum_dom.js
+
+@initDOMDrumMachine Creates DOM elements for each drum, calls createEmptyPattern and patternFaker
+@addClass adds class to DOM element
+@addClass removes class from DOM element
+
+@toggleOnOff toggles drum beat bools
+@isOn calls toggleOnOff and calls add/removeClass
+@toggleSelectedDrumBeat onclick calls isOn
+
+@selectPresetOnOff toggles DOM element classes for Presets, calls presetSaver
+@presetBeatIsOn adds/remove DOM element classes
+@presetSaver saves and loads presets
+@patternFakerIsOn adds class
+
+@removeAllActive removes all DOM element classes
+@playback plays the beats with setTimeOut
+@selectOnOff toggles playback
+
+timers.js
+
+@delay returns step divisor for bpm
+@tempoConversion bpm to ms for setTimeOut
+@rand plays the beats with setTimeOut
+@bpm_ms tempoConversion call
 
 
-If I was serious about speed, I would use for loops instead of maps as for loops are some 40% faster.
-https://jsperf.com/map-vs-for-loop-performance/6
-Since this is a coding challenge with just 3 drums, map is more readable and is shorter to type.
