@@ -10,7 +10,6 @@ body {
 }
 
 .dm__nav {
-  font-size: 4vw;
   display: inline-block;
   display: flex;
   justify-content: space-between;
@@ -22,10 +21,11 @@ body {
 
 .dm__nav__title {
   width: 10%;
+  font-size: 8vw;
+  font-weight: bold;
 }
 
 .dm__nav__controller {
-  font-size: 4vw;
   display: inline-block;
   display: flex;
   justify-content: flex-end;
@@ -41,18 +41,20 @@ body {
 }
 
 .dm__nav__controller__ul__li {
+  font-size: 3vw;
   display: flex;
   justify-content: center;
-  width: 2em;
+  width: 3em;
   color: white;
   margin: 0 10px;
-  padding: 10px;
+  padding: 8px 15px 8px 15px;
   background-color: black;
 }
 
-.dm__nav__controller__ul__li--on {
+.dm__nav__controller__ul__li--active {
   opacity: .5;
 }
+
 
 
 
@@ -65,6 +67,7 @@ body {
   border-radius: 10px;
   padding: 4px;
 }
+
 
 
 
@@ -124,6 +127,7 @@ body {
 
 
 
+
 /*DRUM SECTION*/
 
 .dm__drum {
@@ -165,8 +169,6 @@ body {
 }
 
 .dm__drum__ul__li {
-  /*background-color: #FF69B4;*/
-  /*background-color: #eeb2b2;*/
   background-color: #ceaf9a;
   display: inline-block;
   margin: 10px 3px;
@@ -176,9 +178,8 @@ body {
 }
 
 .dm__drum__ul__li:nth-child(4n+1) {
-/*  background-color: #FF0000;
-  background-color: #d6bbbb;*/
-  background-color: #d4cdcd;
+  /*background-color: #b28585;*/
+  background-color: #b6957f;
   display: inline-block;
   margin: 10px 3px;
   width: 100%;
@@ -186,26 +187,12 @@ body {
   border-radius: 10px;
 }
 
-.dm__drum__ul__li:nth-last-child(1) {
-  margin: 0 10px 0 3px;
+.dm__drum__ul__li--selected,
+.dm__drum__ul__li--selected:nth-child(4n+1) {
+  background-color: black;
 }
 
 .dm__drum__ul__li--active,
 .dm__drum__ul__li--active:nth-child(4n+1) {
   opacity: .5;
-  /*background-color: #8d2d2d;*/
-}
-
-.dm__drum__ul__li--active--blackout,
-.dm__drum__ul__li--active--blackout:nth-child(4n+1) {
-  -webkit-filter: invert(100%);
-  filter: invert(100%);
-  /*background-color: #599c59;*/
-}
-
-.dm__drum__ul__li--active--white,
-.dm__drum__ul__li--active--white:nth-child(4n+1) {
-  /*-webkit-filter: invert(100%);
-  filter: invert(100%);*/
-  background-color: white;
 }

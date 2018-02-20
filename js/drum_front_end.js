@@ -1,62 +1,61 @@
-const initDOMDrumMachine = (steps, drum_keys,step) => {
+const initDOMDrumMachine = () => {
+
+  const steps = timers.step_time;
+  const drum_keys = Object.keys(drums);
+
+
   drum_keys.map((drum_key, index) => {
 
     // Create Drums Types
-    const drumTypeDiv = document.createElement('div');
-    drumTypeDiv.className = 'dm__drum';
-    drumTypeDiv.id = drum_key;
-    drumTypeDiv.addEventListener('click', toggleSelectedDrumBeat.bind(this))
+    const drum_type_div = document.createElement('div');
+    drum_type_div.className = 'dm__drum';
+    drum_type_div.id = drum_key;
+    drum_type_div.addEventListener('click', toggleSelectedDrumBeat.bind(this))
 
-    const drumTitleDiv = document.createElement('div');
-    drumTitleDiv.className = 'dm__drum__title';
-    drumTitleDiv.innerHTML += drum_key;
+    const drum_title_div = document.createElement('div');
+    drum_title_div.className = 'dm__drum__title';
+    drum_title_div.innerHTML += drum_key;
 
-    const drumInnerUl = document.createElement('ul');
-    drumInnerUl.className = 'dm__drum__ul';
+    const drum_inner_ul = document.createElement('ul');
+    drum_inner_ul.className = 'dm__drum__ul';
 
     // Add Drums to DOM
-    drum.appendChild(drumTypeDiv);
+    drum.appendChild(drum_type_div);
 
-    drumTypeDiv.appendChild(drumTitleDiv);
-    drumTypeDiv.appendChild(drumInnerUl);
+    drum_type_div.appendChild(drum_title_div);
+    drum_type_div.appendChild(drum_inner_ul);
 
     // Add Drum Steps to DOM
-    for (let drumStep = 0; drumStep < drums[drum_key].steps; drumStep++) {
-      const stepDrumDiv = document.createElement('li');
-      stepDrumDiv.className = 'dm__drum__ul__li';
-      stepDrumDiv.id = drum_key + '_' + drumStep;
-      drumInnerUl.appendChild(stepDrumDiv);
+    for (let drum_step = 0; drum_step < steps; drum_step++) {
+      const step_drum_div = document.createElement('li');
+      step_drum_div.className = 'dm__drum__ul__li';
+      step_drum_div.id = drum_key + '_' + drum_step;
+      drum_inner_ul.appendChild(step_drum_div);
 
-      // console.log('drum_key',drum_key)
+      // Initialize pattern data
       createEmptyPattern(drum_key,'pattern')
     }
 
   })
-  console.log(steps,'whatiwant')
+
+  // Create initial random pattern
   patternFaker(steps, drum_keys);
 
-}
-
-
-
-
-const toggleSelectedDrumBeat = (e) => {
-  // console.log('beat select', e.target.id)
-  const id = parseInt(e.target.id.split('_').pop());
-  const drum_key = e.target.id.split('_').shift();
-  isOn(drum_key, id, e)
 }
 
 const toggleOnOff = (drum_key, id) => {
   drums[drum_key].pattern[id].on = !drums[drum_key].pattern[id].on;
 }
 
+const addClass = (target, class_name) => {
+  target.classList.add(class_name);
+}
+
+const removeClass = (target, class_name) => {
+  target.classList.remove(class_name);
+}
+
 const isOn = (drum_key, id, e) => {
-  if (!e) {
-    const drum_id = drum_key +'_' + id
-    const e_temp = document.getElementById(drum_id)
-    addClass(e_temp, song.drum_beat_selected)
-  }
   if (e) {
     const e_temp = e.target;
     if (e_temp.id && drums[drum_key].pattern[id].on === false ) {
@@ -67,35 +66,53 @@ const isOn = (drum_key, id, e) => {
       removeClass(e_temp, song.drum_beat_selected)
     }
   }
-
 }
 
-
-const addClass = (drum_target, drum_class_name) => {
-  drum_target.classList.add(drum_class_name);
+const toggleSelectedDrumBeat = (e) => {
+  const id = parseInt(e.target.id.split('_').pop());
+  const drum_key = e.target.id.split('_').shift();
+  isOn(drum_key, id, e)
 }
 
-const removeClass = (drum_target, drum_class_name) => {
-  drum_target.classList.remove(drum_class_name);
+const presetBeatIsOn = (drum_key, id) => {
+  const drum_id = document.getElementById(drum_key + '_' + id)
+  console.log('presetBeatIsOn',drum_key, id)
+  if (drums[drum_key].pattern[id].on === true ) {
+      addClass(drum_id, song.drum_beat_selected)
+    } else {
+      removeClass(drum_id, song.drum_beat_selected)
+    }
 }
-
-const presetOnOff = (e) => {
-  const preset_id = e.target.id
-  // console.log(preset_id)
-  // drum_keys.filter(drum_key => {
-    // console.log('changeDrumPattern drum_keys',drum_keys)
-    // makePreset(preset_id)
-    song.drum_keys.map((drum_key) => {
-      presetSaver(e.target.id, drum_key)
-    })
-
-  // })
-}
-
 
 const selectPresetOnOff = (e) => {
-  console.log(e.target.id)
-  presetOnOff(e)
+  song.preset_active[e.target.id] = !song.preset_active[e.target.id]
+  const presets = Object.keys(song.preset_active)
+  presets.map(preset => {
+    if (preset !== e.target.id) {
+      song.preset_active[preset] = false
+      const target = document.getElementById(preset)
+      removeClass(target, song.active_nav);
+    } else {
+      if (song.preset_active[e.target.id]) {
+        addClass(e.target, song.active_nav)
+        presetSaver(e)
+    } else {
+        removeClass(e.target, song.active_nav);
+      }
+    }
+  })
+}
+
+const presetSaver = (e) => {
+  const preset = e.target.id
+  song.drum_keys.map((drum_key) => {
+    if (drums[drum_key].pattern_presets[preset]) {
+      drums[drum_key].pattern = drums[drum_key].pattern_presets[preset].slice();
+      drums[drum_key].pattern.map((value, index) => presetBeatIsOn(drum_key, index))
+    } else {
+      drums[drum_key].pattern_presets[preset] = drums[drum_key].pattern.slice();
+    }
+  })
 }
 
 const removeAllActive = (active ) => {
@@ -137,11 +154,17 @@ const selectOnOff = (e) => {
   song.playback = !song.playback;
   let time_for_setTimeout = timers.bpm_ms()
   if (song.playback) {
-    e.target.classList.add(song.navActive);
+    addClass(e.target, song.active_nav);
     playback(0, timers.step_time, time_for_setTimeout, song.drum_keys);
   } else {
-    e.target.classList.remove(song.nav_active);
+    removeClass(e.target, song.active_nav);
   }
+}
+
+const patternFakerIsOn = (drum_key, id) => {
+    const drum_id = drum_key +'_' + id
+    const e_temp = document.getElementById(drum_id)
+    addClass(e_temp, song.drum_beat_selected)
 }
 
 const drum = document.querySelector('.dm');
@@ -150,9 +173,6 @@ const audio = document.querySelector('.dm');
 
 document.getElementById('onoff').addEventListener('click', selectOnOff.bind(this));
 
-//preset should dump into active pattern
 document.getElementById('preset1').addEventListener('click', selectPresetOnOff.bind(this));
 document.getElementById('preset2').addEventListener('click', selectPresetOnOff.bind(this));
 document.getElementById('preset3').addEventListener('click', selectPresetOnOff.bind(this));
-
-
