@@ -30,6 +30,12 @@ const initDOMDrumMachine = () => {
       step_drum_div.id = drum_key + '_' + drum_step;
       drum_inner_ul.appendChild(step_drum_div);
 
+      const step_audio_div = document.createElement('audio');
+      step_audio_div.className = 'dm__drum__ul__li__audio';
+      step_audio_div.id = drum_key + '_audio_' + drum_step;
+      step_audio_div.src = drums[drum_key].url;
+      step_drum_div.appendChild(step_audio_div);
+
       createEmptyPattern(drum_key, 'pattern')
     }
 
@@ -57,13 +63,38 @@ const isOn = (drum_key, id, e) => {
     if (e_temp.id && drums[drum_key].pattern[id].on === false) {
       toggleOnOff(drum_key, id)
       addClass(e_temp, song.drum_beat_selected)
+      playAudio(e)
     } else {
       toggleOnOff(drum_key, id)
       removeClass(e_temp, song.drum_beat_selected)
+      stopAudio(e)
     }
   }
 }
 
+const playAudio = (e,drum_key,id) => {
+  if (!e) {
+    console.log('if',e)
+    const drum_audio_id = drum_key + '_audio_' + id
+    const drum_audio_target = document.getElementById(drum_audio_id);
+    drum_audio_target.load();
+    drum_audio_target.play();
+    console.log('else',drum_audio_id)
+
+
+  } else {
+    console.log('else',drum_audio_id)
+    const child = e.target.firstChild
+    child.load();
+    child.play();
+  }
+
+}
+
+const stopAudio = (drum_key, id,e) => {
+  const child = e.target.firstChild
+  child.pause();
+}
 
 const patternFakerIsOn = (drum_key, id) => {
   const drum_id = drum_key + '_' + id
@@ -126,7 +157,12 @@ const playback = (counter, step, time_for_setTimeout, drum_keys) => {
       drum_keys.map((drum_key) => {
         const drum_id = drum_key + '_' + counter
         const drum_target = document.getElementById(drum_id);
+
         addClass(drum_target, song.active_drum_beat)
+        if (drums[drum_key].pattern[counter].on) {
+          playAudio(null,drum_key,counter)
+        }
+
       })
 
       counter++;
@@ -173,6 +209,10 @@ const changeStep = (e) => {
   initDOMDrumMachine();
 }
 
+const querySelectorMagic = (class_name, return_name_element, id) => {
+  return_name_element =  document.querySelector(class_name);
+  return return_name_element;
+}
 
 const drum = document.querySelector('.dm');
 const audio = document.querySelector('.dm');
