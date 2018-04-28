@@ -237,8 +237,8 @@
 
   const createDrumSteps = (steps, parent, drum_key) => {
     for (let drum_step = 0; drum_step < steps; drum_step++) {
-      const step_drum_div = createDOMElement('li', 'dm__drum__ul__li', drum_key + '_' + drum_step, parent, undefined, undefined, undefined)
-      createDOMElement('audio', 'dm__drum__ul__li__audio', drum_key + '_audio_' + drum_step, step_drum_div, undefined, drums[drum_key].url, undefined)
+      const step_drum_div = createDOMElement('li', 'dm__drum__ul__li', `${drum_key}_${drum_step}`, parent, undefined, undefined, undefined)
+      createDOMElement('audio', 'dm__drum__ul__li__audio', `${drum_key}_audio_${drum_step}`, step_drum_div, undefined, drums[drum_key].url, undefined)
 
       createEmptyPattern(drum_key, 'pattern')
     }
@@ -261,8 +261,8 @@
     song.drum_keys.map((drum_key, index) => {
       console.log('drum_key',drum_key)
       const drum_type_div = createDOMElement('div', 'dm__drum', drum_key, drum, toggleSelectedDrumBeat, undefined)
-      const drum_title_div = createDOMElement('div', 'dm__drum__title', 'dm__drum__title' + drum_key, drum_type_div, undefined, undefined, drum_key)
-      const drum_inner_ul = createDOMElement('ul', 'dm__drum__ul', 'dm__drum__ul' + drum_key, drum_type_div, undefined, undefined, undefined)
+      const drum_title_div = createDOMElement('div', 'dm__drum__title', `dm__drum__title${drum_key}`, drum_type_div, undefined, undefined, drum_key)
+      const drum_inner_ul = createDOMElement('ul', 'dm__drum__ul', `dm__drum__ul${drum_key}`, drum_type_div, undefined, undefined, undefined)
 
       createDrumSteps(timers.step_time, drum_inner_ul, drum_key);
     })
