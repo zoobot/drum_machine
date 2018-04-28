@@ -15,13 +15,12 @@ body {
   justify-content: flex-start;
   align-items: center;
   flex-wrap: nowrap;
-  height: 10%;
-  margin: 10px;
+  margin: 0 10px;
 }
 
 .dm__nav__title {
   width: 12%;
-  font-size: 7vw;
+  font-size: 6vmax;
   font-weight: bold;
 }
 
@@ -35,20 +34,20 @@ body {
 
 .dm__nav__controller__ul {
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-around;
   flex-wrap: nowrap;
   width: 100%;
 }
 
 .dm__nav__controller__ul__li {
-font-size: 3vw;
-    display: flex;
-    justify-content: center;
-    width: .7em;
-    color: white;
-    margin: 0 5px;
-    padding: 10px 15px 10px 15px;
-    background-color: black;
+  font-size: 4vmax;
+  display: flex;
+  justify-content: center;
+  width: 4vmax;
+  color: white;
+  margin: 0 5px;
+  padding: 8px 11px 8px 15px;
+  background-color: black;
 }
 
 .dm__nav__controller__ul__li--active {
@@ -72,6 +71,7 @@ font-size: 3vw;
 
 
 
+
 /*DRUM MACHINE SECTION*/
 
 .dm {
@@ -80,6 +80,7 @@ font-size: 3vw;
   border-radius: 10px;
   padding: 4px;
 }
+
 
 
 
@@ -138,6 +139,7 @@ font-size: 3vw;
   -webkit-filter: invert(100%);
   filter: invert(100%);
 }
+
 
 
 
@@ -210,4 +212,15 @@ font-size: 3vw;
 .dm__drum__ul__li--active,
 .dm__drum__ul__li--active:nth-child(4n+1) {
   opacity: .5;
+}
+
+.one {
+  width: 500px;
+  height: 500px;
+  background-color: black;
+}
+.one_drum {
+  width: 500px;
+  height: 500px;
+  background-color: black;
 }
