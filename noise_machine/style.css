@@ -1,0 +1,215 @@
+html,
+body {
+  background-color: #FFFFFF;
+  height: 95%;
+  font-family: Helvetica, Arial;
+}
+
+.container {
+  height: 95%;
+}
+
+.dm__nav {
+  display: inline-block;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: nowrap;
+  margin: 0 10px;
+}
+
+.dm__nav__title {
+  width: 12%;
+  font-size: 6vmax;
+  font-weight: bold;
+}
+
+.dm__nav__controller {
+  display: inline-block;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: nowrap;
+  width: 80%;
+}
+
+.dm__nav__controller__ul {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: nowrap;
+  width: 100%;
+}
+
+.dm__nav__controller__ul__li {
+  font-size: 4vmax;
+  display: flex;
+  justify-content: center;
+  width: 4vmax;
+  color: white;
+  margin: 0 5px;
+  padding: 8px 11px 8px 15px;
+  background-color: black;
+}
+
+.dm__nav__controller__ul__li--active {
+  opacity: .5;
+}
+
+.dm__nav__controller__ul__li#spacer {
+  background-color: white;
+}
+
+.dm__nav__controller__ul__li.play2 {
+  width: 0;
+  height: 0;
+  border-bottom: 10px solid transparent;
+  border-top: 10px solid transparent;
+  border-left: 15px solid white;
+  top: 10px;
+  left: 16px;
+}
+
+
+
+
+
+/*DRUM MACHINE SECTION*/
+
+.dm {
+  background: #bfb4b9;
+  display: block;
+  border-radius: 10px;
+  padding: 4px;
+}
+
+
+
+
+
+
+/*PLAYER SECTION*/
+
+.dm__player {
+  text-decoration: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: nowrap;
+  -webkit-margin-before: 0em;
+  -webkit-margin-after: 0em;
+  -webkit-padding-start: 0px;
+  padding: 0 10px 0 10px;
+  margin: 5px;
+}
+
+.dm__player__title {
+  font-size: 4vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 10%;
+  margin: 0 10px 0 10px;
+  padding: 0 0 0 10px;
+}
+
+.dm__player__ul {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: nowrap;
+  -webkit-margin-before: 0em;
+  -webkit-margin-after: 0em;
+  -webkit-padding-start: 0px;
+  margin: 5px;
+  width: 100%;
+}
+
+.dm__player__ul__li {
+  background: #FFFFFF;
+  color: #000000;
+  height: 20px;
+  width: 20px;
+  display: inline-block;
+  margin: 0 3px 0 3px;
+  border-radius: 50%;
+  text-align: center;
+}
+
+.dm__player__ul__li--active--blackout {
+  -webkit-filter: invert(100%);
+  filter: invert(100%);
+}
+
+
+
+
+
+
+/*DRUM SECTION*/
+
+.dm__drum {
+  text-decoration: none;
+  background: gray;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: nowrap;
+  -webkit-margin-before: 0em;
+  -webkit-margin-after: 0em;
+  -webkit-padding-start: 0px;
+  padding: 0 10px 0 10px;
+  margin: 5px;
+}
+
+.dm__drum__title {
+  font-size: 4vw;
+  color: #371C1C;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 10%;
+  margin: 0 10px 0 10px;
+  padding: 0 0 0 10px;
+}
+
+.dm__drum__ul {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: nowrap;
+  -webkit-margin-before: 0em;
+  -webkit-margin-after: 0em;
+  -webkit-padding-start: 0px;
+  margin: 5px;
+  width: 89%;
+}
+
+.dm__drum__ul__li {
+  background-color: #ceaf9a;
+  display: inline-block;
+  margin: 10px 3px;
+  width: 100%;
+  height: 45px;
+  border-radius: 10px;
+}
+
+.dm__drum__ul__li:nth-child(4n+1) {
+  /*background-color: #b28585;*/
+  background-color: #b6957f;
+  display: inline-block;
+  margin: 10px 3px;
+  width: 100%;
+  height: 45px;
+  border-radius: 10px;
+}
+
+.dm__drum__ul__li--selected,
+.dm__drum__ul__li--selected:nth-child(4n+1) {
+  background-color: black;
+}
+
+.dm__drum__ul__li--active,
+.dm__drum__ul__li--active:nth-child(4n+1) {
+  opacity: .5;
+}

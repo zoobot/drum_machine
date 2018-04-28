@@ -1,0 +1,19 @@
+{
+  "name": "drum_machine",
+  "version": "1.0.0",
+  "description": "drum machine",
+  "main": "drum_machine.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "keywords": [
+    "drum",
+    "machine"
+  ],
+  "author": "anon",
+  "license": "MIT",
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "mocha": "^5.0.1"
+  }
+}
