@@ -213,14 +213,3 @@ body {
 .dm__drum__ul__li--active:nth-child(4n+1) {
   opacity: .5;
 }
-
-.one {
-  width: 500px;
-  height: 500px;
-  background-color: black;
-}
-.one_drum {
-  width: 500px;
-  height: 500px;
-  background-color: black;
-}

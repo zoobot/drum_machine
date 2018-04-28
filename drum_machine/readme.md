@@ -1,6 +1,6 @@
 # Drum Machine
 
-A Visual drum machine with Pure Javascript HTML and CSS
+A Visual drum machine with Javascript HTML and CSS
 
 ## Getting Started
 
@@ -10,10 +10,6 @@ These instructions will get you a copy of the project up and running on your loc
 
 These files maybe viewed locally by opening index.html or by placing them on a webserver. No webserver required.
 
-### Installing
-
-For Testing run
-npm install on command line
 
 ### Details
 

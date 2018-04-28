@@ -1,7 +1,7 @@
 {
   "name": "drum_machine",
   "version": "1.0.0",
-  "description": "drum machine for Splice",
+  "description": "drum machine",
   "main": "drum_machine.js",
   "scripts": {
     "test": "mocha"
