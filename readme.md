@@ -11,6 +11,15 @@ These instructions will get you a copy of the project up and running on your loc
 These files maybe viewed locally by opening index.html or by placing them on a webserver. No webserver required.
 
 ### Installing
+Clone the repo and open the index files in a browser.
+Open Terminal
+git clone https://github.com/zoobot/drum_machine.git
+cd drum_machine/drum_machine
+or
+cd drum_machine/noise_machine
+or
+cd drum_machine/onedrum
+open index.html
 
 For Testing run
 npm install on command line
