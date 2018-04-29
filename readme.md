@@ -29,7 +29,6 @@ npm install on command line
 All code runs in latest Chrome, and FireFox
 
 ### Function Summaries
-
 _____________________
 
 drum_machine.js
@@ -39,30 +38,21 @@ drum_machine.js
 <br> @createEmptyPattern Creates array of beats in drums[preset].pattern
 <br> @patternFaker Creates random drum pattern
 <br> @presetSaver saves and loads presets
-
-_____________________
-
-drum_dom.js
-
 <br> @initDOMDrumMachine Creates DOM elements for each drum, calls createEmptyPattern and patternFaker
 <br> @addClass adds class to DOM element
 <br> @addClass removes class from DOM element
-
 <br> @toggleOnOff toggles drum beat bools
 <br> @isOn calls toggleOnOff and calls add/removeClass
 <br> @patternFakerIsOn DOM manipulation after drumOnOff
 <br> @toggleSelectedDrumBeat onclick calls isOn
-
 <br> @selectPresetOnOff toggles DOM element classes for Presets, calls patternFaker and presetSaver
-
 <br> @removeAllActive removes all DOM element classes
 <br> @playback plays the beats with setTimeOut
 <br> @selectOnOff toggles playback
 <br> @changeStep changes step and calls initDOMDrumMachine to rebuild drum DOM
-
 _____________________
 
-timers.js
+timers
 
 <br> @delay returns step divisor for bpm
 <br> @tempoConversion bpm to ms for setTimeOut
