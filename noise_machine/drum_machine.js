@@ -20,7 +20,7 @@
 
     rand: (step) => Math.floor((Math.random() * (step - 1)) + 1),
 
-    bpm_ms: () => timers.tempoConversion(timers.bpm, timers.delay(timers.delay))
+    bpm_ms: () => timers.tempoConversion(timers.bpm, timers.delay(timers.step_time))
   }
 
   const drums = [
@@ -261,7 +261,7 @@
     song.drum_keys.map((drum_key, index) => {
       console.log('drum_key',drum_key)
       const drum_type_div = createDOMElement('div', 'dm__drum', drum_key, drum, toggleSelectedDrumBeat, undefined)
-      const drum_title_div = createDOMElement('div', 'dm__drum__title', `dm__drum__title${drum_key}`, drum_type_div, undefined, undefined, drum_key)
+      // const drum_title_div = createDOMElement('div', 'dm__drum__title', `dm__drum__title${drum_key}`, drum_type_div, undefined, undefined, drum_key)
       const drum_inner_ul = createDOMElement('ul', 'dm__drum__ul', `dm__drum__ul${drum_key}`, drum_type_div, undefined, undefined, undefined)
 
       createDrumSteps(timers.step_time, drum_inner_ul, drum_key);

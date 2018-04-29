@@ -1,6 +1,6 @@
 html,
 body {
-  background-color: #FFFFFF;
+  background-color: #000000;
   height: 95%;
   font-family: Helvetica, Arial;
 }
@@ -44,10 +44,10 @@ body {
   display: flex;
   justify-content: center;
   width: 4vmax;
-  color: white;
+  color: red;
   margin: 0 5px;
   padding: 8px 11px 8px 15px;
-  background-color: black;
+  background-color: darkslategray;
 }
 
 .dm__nav__controller__ul__li--active {
@@ -75,7 +75,7 @@ body {
 /*DRUM MACHINE SECTION*/
 
 .dm {
-  background: #bfb4b9;
+  background: darkslategray;
   display: block;
   border-radius: 10px;
   padding: 4px;
@@ -149,7 +149,7 @@ body {
 
 .dm__drum {
   text-decoration: none;
-  background: gray;
+  /*background: gray;*/
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -186,7 +186,7 @@ body {
 }
 
 .dm__drum__ul__li {
-  background-color: #ceaf9a;
+  background-color: red;
   display: inline-block;
   margin: 10px 3px;
   width: 100%;
@@ -196,7 +196,7 @@ body {
 
 .dm__drum__ul__li:nth-child(4n+1) {
   /*background-color: #b28585;*/
-  background-color: #b6957f;
+  background-color: red;
   display: inline-block;
   margin: 10px 3px;
   width: 100%;

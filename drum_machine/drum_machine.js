@@ -20,7 +20,7 @@
 
     rand: (step) => Math.floor((Math.random() * (step - 1)) + 1),
 
-    bpm_ms: () => timers.tempoConversion(timers.bpm, timers.delay(timers.step_time))
+    bpm_ms: () => timers.tempoConversion(timers.bpm, timers.delay(8))
   }
 
   const drums = [
