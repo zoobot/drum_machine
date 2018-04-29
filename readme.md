@@ -34,39 +34,39 @@ _____________________
 
 drum_machine.js
 
-@drumOnOff toggles drum beat calls patternFakerIsOn for DOM manipulation
-@fourToFloor Returns indexes of 4/4 depending on step
-@createEmptyPattern Creates array of beats in drums[preset].pattern
-@patternFaker Creates random drum pattern
-@presetSaver saves and loads presets
+<br> @drumOnOff toggles drum beat calls patternFakerIsOn for DOM manipulation
+<br> @fourToFloor Returns indexes of 4/4 depending on step
+<br> @createEmptyPattern Creates array of beats in drums[preset].pattern
+<br> @patternFaker Creates random drum pattern
+<br> @presetSaver saves and loads presets
 
 _____________________
 
 drum_dom.js
 
-@initDOMDrumMachine Creates DOM elements for each drum, calls createEmptyPattern and patternFaker
-@addClass adds class to DOM element
-@addClass removes class from DOM element
+<br> @initDOMDrumMachine Creates DOM elements for each drum, calls createEmptyPattern and patternFaker
+<br> @addClass adds class to DOM element
+<br> @addClass removes class from DOM element
 
-@toggleOnOff toggles drum beat bools
-@isOn calls toggleOnOff and calls add/removeClass
-@patternFakerIsOn DOM manipulation after drumOnOff
-@toggleSelectedDrumBeat onclick calls isOn
+<br> @toggleOnOff toggles drum beat bools
+<br> @isOn calls toggleOnOff and calls add/removeClass
+<br> @patternFakerIsOn DOM manipulation after drumOnOff
+<br> @toggleSelectedDrumBeat onclick calls isOn
 
-@selectPresetOnOff toggles DOM element classes for Presets, calls patternFaker and presetSaver
+<br> @selectPresetOnOff toggles DOM element classes for Presets, calls patternFaker and presetSaver
 
-@removeAllActive removes all DOM element classes
-@playback plays the beats with setTimeOut
-@selectOnOff toggles playback
-@changeStep changes step and calls initDOMDrumMachine to rebuild drum DOM
+<br> @removeAllActive removes all DOM element classes
+<br> @playback plays the beats with setTimeOut
+<br> @selectOnOff toggles playback
+<br> @changeStep changes step and calls initDOMDrumMachine to rebuild drum DOM
 
 _____________________
 
 timers.js
 
-@delay returns step divisor for bpm
-@tempoConversion bpm to ms for setTimeOut
-@rand plays the beats with setTimeOut
-@bpm_ms tempoConversion call
+<br> @delay returns step divisor for bpm
+<br> @tempoConversion bpm to ms for setTimeOut
+<br> @rand plays the beats with setTimeOut
+<br> @bpm_ms tempoConversion call
 
 
